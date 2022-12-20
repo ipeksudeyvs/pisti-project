@@ -4,26 +4,29 @@ public class Main {
         Board board= new Board();
         Deck deck = new Deck();
 
-        deck.shuffle();
-        deck.cut();
-
-        /*for(int i=0 ; i<52 ; i++){
-            System.out.println(Deck.allCards[i].getSuit()+ Deck.allCards[i].getNumber());
-        }*/
-
         Player player = new Player();
         Player dealer = new Player();
 
-        /* for (int i = 0; i < player.getHand().length; i++) {
-            System.out.print(player.getHand()[i] + " ");
-        }
-        System.out.println();
-        for (int i = 0; i < dealer.getHand().length; i++) {
-            System.out.print(dealer.getHand()[i] + " ");
-        }*/
+        deck.shuffle();
+        deck.cut();
+
+
+
+
 
         int index= 51;
         deck.deal(index, player, dealer);
+
+        index= index-8 ;
+        for (int i = 0; i < 4; i++) {
+            board.cards[i] = deck.allCards[index];
+            index--;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            System.out.print(board.cards[i].getSuit() +  board.cards[i].getNumber()+ " ");
+        }
+        System.out.println();
 
         for (int i = 0; i < player.getHand().length; i++) {
             System.out.print(player.getHand()[i].getSuit() +  player.getHand()[i].getNumber()+ " ");
@@ -32,6 +35,7 @@ public class Main {
         for (int i = 0; i < dealer.getHand().length; i++) {
             System.out.print(dealer.getHand()[i].getSuit() +  dealer.getHand()[i].getNumber()+ " ");
         }
+
 
 
 

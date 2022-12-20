@@ -1,8 +1,8 @@
 public class Player {
-    private Cards[] hand= new Cards[4];
-    public Cards[] getHand() { return hand; }
+    private Card[] hand= new Card[4];
+    public Card[] getHand() { return hand; }
 
-    public void setHand(Cards[] hand) { this.hand = hand; }
+    public void setHand(Card[] hand) { this.hand = hand; }
 
 
 }

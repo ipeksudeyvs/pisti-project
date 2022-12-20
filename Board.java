@@ -1,5 +1,7 @@
 public class Board {
-    public Cards[] cards = new Cards[52];
+    public Card[] cards = new Card[52];
+
+
 
 
 }
