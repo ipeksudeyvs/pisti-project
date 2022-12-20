@@ -48,12 +48,13 @@ public class Deck {
 
             for (int i = index; i >= index - 6; i=i-2) {
                 //player add i
-                player.getHand()[cardNum] = allCards[i];
+                player.hand[cardNum] = allCards[i];
                 //dealer add i-1
-                dealer.getHand()[cardNum] = allCards[i-1];
+                dealer.hand[cardNum] = allCards[i-1];
                 cardNum++;
         }
-
+            player.cardNum=4;
+            dealer.cardNum=4;
 
 
     }

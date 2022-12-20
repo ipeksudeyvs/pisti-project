@@ -7,6 +7,7 @@ public class Main {
         Player player = new Player();
         Player dealer = new Player();
 
+
         deck.shuffle();
         deck.cut();
 
