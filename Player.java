@@ -12,6 +12,7 @@ public class Player {
             while (this.hand[random].getNumber().equals("J")) {
                 random = (int) (Math.random() * this.cardNum);
             }
+            System.out.println("The computer played   " + this.hand[random].getSuit() + this.hand[random].getNumber());
             //play random card and return
             if (random == cardNum - 1) {
                 board.cards[board.topBoardIndex + 1] = this.hand[random];
@@ -27,9 +28,11 @@ public class Player {
                 board.topBoardIndex++;
                 this.cardNum--;
             }
+            return;
         }
         for (int i = 0; i < this.cardNum; i++) {
             if (this.hand[i].getNumber().equals(board.cards[board.topBoardIndex].getNumber())) {
+                System.out.println("The computer played   " + this.hand[i].getSuit() + this.hand[i].getNumber());
                 // play with this card and return
                 if (board.topBoardIndex == 0) {
                     pistiCounter++;
@@ -53,13 +56,14 @@ public class Player {
                     this.cardNum--;
                 }
 
-                board.topBoardIndex = 0;
+                board.topBoardIndex = -1;
                 return;
 
             }
         }
         for (int i = 0; i < this.cardNum; i++) {
             if (this.hand[i].getNumber().equals("J")) {
+                System.out.println("The computer played  " + this.hand[i].getSuit() + this.hand[i].getNumber());
                 // play with this card and return
                 for (int j = 0; j < board.topBoardIndex; j++) {
                     gatheredCards[gatheredCardsIndex] = board.cards[j];
@@ -78,11 +82,15 @@ public class Player {
                     this.hand[cardNum - 1] = null;
                     this.cardNum--;
                 }
-                board.topBoardIndex = 0;
+                board.topBoardIndex = -1;
                 return;
             }
         }
         int random = (int) (Math.random() * this.cardNum);
+        while (this.hand[random].getNumber().equals("J")) {
+            random = (int) (Math.random() * this.cardNum);
+        }
+        System.out.println("The computer played   " + this.hand[random].getSuit() + this.hand[random].getNumber());
         //play random card and return
         if (random == cardNum - 1) {
             board.cards[board.topBoardIndex + 1] = this.hand[random];
@@ -101,6 +109,23 @@ public class Player {
     }
 
     public void playwithInput(int playedCard, Board board) {
+        if (board.topBoardIndex == -1) {
+            if (playedCard == cardNum - 1) {
+                board.cards[board.topBoardIndex + 1] = this.hand[playedCard];
+                this.hand[playedCard] = null;
+                board.topBoardIndex++;
+                cardNum--;
+            } else {
+                Card temp = this.hand[cardNum - 1];
+                this.hand[cardNum - 1] = this.hand[playedCard];
+                this.hand[playedCard] = temp;
+                board.cards[board.topBoardIndex + 1] = this.hand[cardNum - 1];
+                this.hand[cardNum - 1] = null;
+                board.topBoardIndex++;
+                this.cardNum--;
+            }
+            return;
+        }
         if (this.hand[playedCard].getNumber().equals(board.cards[board.topBoardIndex].getNumber())) {
             // play with this card and return
             for (int j = 0; j < board.topBoardIndex; j++) {
@@ -121,7 +146,7 @@ public class Player {
                 this.cardNum--;
             }
 
-            board.topBoardIndex = 0;
+            board.topBoardIndex = -1;
 
         } else if (this.hand[playedCard].getNumber().equals("J")) {
             // play with this card and return
@@ -142,7 +167,7 @@ public class Player {
                 this.hand[cardNum - 1] = null;
                 this.cardNum--;
             }
-            board.topBoardIndex = 0;
+            board.topBoardIndex = -1;
         } else {
             if (playedCard == cardNum - 1) {
                 board.cards[board.topBoardIndex + 1] = this.hand[playedCard];

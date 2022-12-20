@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Deck {
     public static Card[] allCards;
+    public int topDeckIndex = 51;
     Scanner input = new Scanner(System.in);
 
     public Deck() {
@@ -43,10 +44,10 @@ public class Deck {
 
     }
 
-    public void deal(int index,Player player, Player dealer ){
+    public void deal(Player player, Player dealer ){
        int cardNum = 0;
 
-            for (int i = index; i >= index - 6; i=i-2) {
+            for (int i = this.topDeckIndex ; i >= this.topDeckIndex - 6; i=i-2) {
                 //player add i
                 player.hand[cardNum] = allCards[i];
                 //dealer add i-1
@@ -55,7 +56,7 @@ public class Deck {
         }
             player.cardNum=4;
             dealer.cardNum=4;
-
+            this.topDeckIndex-= 8;
 
     }
 
