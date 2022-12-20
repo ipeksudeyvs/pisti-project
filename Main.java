@@ -81,11 +81,13 @@ public class Main {
         }
 
 
-
-
-
-
-
+        player.calculatePoints();
+        dealer.calculatePoints();
+        if((player.gatheredCardsLength + 2*player.pistiCounter ) > (dealer.gatheredCardsLength + 2*dealer.pistiCounter)){
+            player.points+=3;
+        }else if((player.gatheredCardsLength + 2*player.pistiCounter ) < (dealer.gatheredCardsLength + 2*dealer.pistiCounter)){
+            dealer.points+=3;
+        }
 
 
 
