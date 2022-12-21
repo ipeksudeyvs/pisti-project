@@ -33,12 +33,24 @@ public class Player {
         for (int i = 0; i < this.cardNum; i++) {
             if (this.hand[i].getNumber().equals(board.cards[board.topBoardIndex].getNumber())) {
                 System.out.println("The computer played   " + this.hand[i].getSuit() + this.hand[i].getNumber());
+                board.lastWinner = 0;
                 // play with this card and return
                 if (board.topBoardIndex == 0) {
                     pistiCounter++;
                     board.topBoardIndex = -1;
+                    if (i == cardNum - 1) {
+                        this.hand[i] = null;
+                        cardNum--;
+                    } else {
+                        Card temp = this.hand[cardNum - 1];
+                        this.hand[cardNum - 1] = this.hand[i];
+                        this.hand[i] = temp;
+                        this.hand[cardNum - 1] = null;
+                        this.cardNum--;
+                    }
+                    return;
                 }
-                for (int j = 0; j < board.topBoardIndex; j++) {
+                for (int j = 0; j <= board.topBoardIndex; j++) {
                     gatheredCards[gatheredCardsLength] = board.cards[j];
                     board.cards[j] = null;
                     gatheredCardsLength++;
@@ -64,8 +76,10 @@ public class Player {
         for (int i = 0; i < this.cardNum; i++) {
             if (this.hand[i].getNumber().equals("J")) {
                 System.out.println("The computer played  " + this.hand[i].getSuit() + this.hand[i].getNumber());
+
+                board.lastWinner = 0;
                 // play with this card and return
-                for (int j = 0; j < board.topBoardIndex; j++) {
+                for (int j = 0; j <= board.topBoardIndex; j++) {
                     gatheredCards[gatheredCardsLength] = board.cards[j];
                     board.cards[j] = null;
                     gatheredCardsLength++;
@@ -128,7 +142,23 @@ public class Player {
         }
         if (this.hand[playedCard].getNumber().equals(board.cards[board.topBoardIndex].getNumber())) {
             // play with this card and return
-            for (int j = 0; j < board.topBoardIndex; j++) {
+            board.lastWinner = 1;
+            if (board.topBoardIndex == 0) {
+                pistiCounter++;
+                board.topBoardIndex = -1;
+                if (playedCard == cardNum - 1) {
+                    this.hand[playedCard] = null;
+                    cardNum--;
+                } else {
+                    Card temp = this.hand[cardNum - 1];
+                    this.hand[cardNum - 1] = this.hand[playedCard];
+                    this.hand[playedCard] = temp;
+                    this.hand[cardNum - 1] = null;
+                    this.cardNum--;
+                }
+                return;
+            }
+            for (int j = 0; j <= board.topBoardIndex; j++) {
                 gatheredCards[gatheredCardsLength] = board.cards[j];
                 board.cards[j] = null;
                 gatheredCardsLength++;
@@ -150,7 +180,11 @@ public class Player {
 
         } else if (this.hand[playedCard].getNumber().equals("J")) {
             // play with this card and return
-            for (int j = 0; j < board.topBoardIndex; j++) {
+            if (board.topBoardIndex != -1) {
+                board.lastWinner = 1;
+            }
+
+            for (int j = 0; j <= board.topBoardIndex; j++) {
                 gatheredCards[gatheredCardsLength] = board.cards[j];
                 board.cards[j] = null;
                 gatheredCardsLength++;
@@ -186,16 +220,24 @@ public class Player {
         }
     }
 
-    public void calculatePoints(){
+    public void calculatePoints() {
         for (int i = 0; i < gatheredCardsLength; i++) {
-            if( gatheredCards[gatheredCardsLength].getSuit().equals("♦") && gatheredCards[gatheredCardsLength].getNumber().equals("10")){
-                this.points+=3;
-            }else if( gatheredCards[gatheredCardsLength].getSuit().equals("♣") && gatheredCards[gatheredCardsLength].getNumber().equals("2")){
-                this.points+=2;
-            }else{
-                this.points+=1;
+            if (gatheredCards[i].getSuit().equals("♦") && gatheredCards[i].getNumber().equals("10")) {
+                this.points += 3;
+            } else if (gatheredCards[i].getSuit().equals("♣") && gatheredCards[i].getNumber().equals("2")) {
+                this.points += 2;
+            } else {
+                this.points += 1;
             }
         }
-        this.points+= 10 * this.pistiCounter;
+        this.points += 10 * this.pistiCounter;
+    }
+
+    public void giveAllCardsToPlayer(Board board) {
+        for (int j = 0; j <= board.topBoardIndex; j++) {
+            gatheredCards[gatheredCardsLength] = board.cards[j];
+            board.cards[j] = null;
+            gatheredCardsLength++;
+        }
     }
 }
