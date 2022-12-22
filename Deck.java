@@ -14,7 +14,6 @@ public class Deck {
             allCards[i] = new Card(suit[i / 13], number[i % 13]);
         }
 
-
     }
 
     public void shuffle() {
@@ -44,19 +43,19 @@ public class Deck {
 
     }
 
-    public void deal(Player player, Player dealer ){
-       int cardNum = 0;
+    public void deal(Player player, Player dealer) {
+        int cardNum = 0;
 
-            for (int i = this.topDeckIndex ; i >= this.topDeckIndex - 6; i=i-2) {
-                //player add i
-                player.hand[cardNum] = allCards[i];
-                //dealer add i-1
-                dealer.hand[cardNum] = allCards[i-1];
-                cardNum++;
+        for (int i = this.topDeckIndex; i >= this.topDeckIndex - 6; i = i - 2) {
+            //player add i
+            player.hand[cardNum] = allCards[i];
+            //dealer add i-1
+            dealer.hand[cardNum] = allCards[i - 1];
+            cardNum++;
         }
-            player.cardNum=4;
-            dealer.cardNum=4;
-            this.topDeckIndex-= 8;
+        player.cardNum = 4;
+        dealer.cardNum = 4;
+        this.topDeckIndex -= 8;
 
     }
 
