@@ -1,3 +1,2 @@
-1,gunes123,21
-2,gunes,19
-3,gunes, 13
+1,yes,39
+2,ipekkk,11

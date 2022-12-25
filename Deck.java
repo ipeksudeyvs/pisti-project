@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Deck {
-    public static Card[] allCards;
-    public int topDeckIndex = 51;
+    public static Card[] allCards; // array for storing the deck
+    public int topDeckIndex = 51; // shows the index of the top card on deck
     Scanner input = new Scanner(System.in);
 
     public Deck() {
@@ -16,7 +16,7 @@ public class Deck {
 
     }
 
-    public void shuffle() {
+    public void shuffle() { //method to shuffle the cards
 
         for (int i = allCards.length - 1; i >= 1; i--) {
             int j = (int) (Math.random() * (i + 1));
@@ -27,7 +27,7 @@ public class Deck {
 
     }
 
-    public void cut() {
+    public void cut() { //method to cut the cards
 
         System.out.print("Please enter a number between 1 and 52:");
         int inputNum = input.nextInt();
@@ -43,7 +43,7 @@ public class Deck {
 
     }
 
-    public void deal(Player player, Player dealer) {
+    public void deal(Player player, Player dealer) { //method to deal the cards to player
         int cardNum = 0;
 
         for (int i = this.topDeckIndex; i >= this.topDeckIndex - 6; i = i - 2) {

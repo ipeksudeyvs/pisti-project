@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -30,8 +29,8 @@ public class Main {
             board.topBoardIndex++;
         }
 
-        while (deck.topDeckIndex >= -1) {
-            System.out.println("-------------BOARD--------------");
+        while (deck.topDeckIndex >= -1) {  //main loop
+            System.out.println("<-<-<-<-<-<->BOARD<->->->->->->");
             System.out.println();
             for (int i = board.topBoardIndex; i >= 0; i--) {
 
@@ -43,7 +42,7 @@ public class Main {
             System.out.println();
             System.out.println();
 
-            System.out.println("----------YOUR HAND------------");
+            System.out.println("*-*-*-*----YOUR HAND----*-*-*-*");
             System.out.println();
 
             for (int i = 0; i < player.cardNum; i++) {
@@ -59,13 +58,13 @@ public class Main {
             System.out.println();
             System.out.println();
 
-            System.out.println("Please choose the card you want to play. ");
+            System.out.println("Please choose the card you want to play.<3 ");
             int selectedCard = input.nextInt();
 
-            player.playwithInput(selectedCard - 1, board);
+            player.playWithInput(selectedCard - 1, board);
             System.out.println();
 
-            System.out.println("-------------BOARD--------------");
+            System.out.println("<-<-<-<-<-<->BOARD<->->->->->->");
             System.out.println();
 
             for (int i = board.topBoardIndex; i >= 0; i--) {
@@ -77,19 +76,21 @@ public class Main {
             }
             System.out.println();
 
-            /*try {
+            /*try {  // i learnt this from internet it feels like computer thinks
                 sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }*/
 
-            dealer.play(board);
+            dealer.play(board); // calling the method and making computer play
             
-            if (dealer.cardNum == 0) {
+            if (dealer.cardNum == 0) {  // if no cards then deal
                 if (deck.topDeckIndex != -1) {
                     deck.deal(player, dealer);
                 } else {
                     System.out.println("Game is over!");
+                    System.out.println(" <3 Thank you for playing :* ");
+                    System.out.println();
                     if (board.lastWinner == 0) {
                         dealer.giveAllCardsToPlayer(board);
                     } else {
@@ -103,6 +104,7 @@ public class Main {
 
         player.calculatePoints();
         dealer.calculatePoints();
+        // after calculating points, check who has the most cards
         if ((player.gatheredCardsLength + 2 * player.pistiCounter) > (dealer.gatheredCardsLength + 2 * dealer.pistiCounter)) {
             player.points += 3;
         } else if ((player.gatheredCardsLength + 2 * player.pistiCounter) < (dealer.gatheredCardsLength + 2 * dealer.pistiCounter)) {
