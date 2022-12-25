@@ -64,9 +64,6 @@ public class Main {
             int selectedCard = input.nextInt();
             player.playWithInput(selectedCard - 1, board);
 
-            //for making the player play automatically like dealer
-            //player.play(board);
-
             System.out.println();
 
             System.out.println("<-<-<-<-<-<->BOARD<->->->->->->");
