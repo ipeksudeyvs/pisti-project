@@ -59,9 +59,14 @@ public class Main {
             System.out.println();
 
             System.out.println("Please choose the card you want to play.<3 ");
-            int selectedCard = input.nextInt();
 
+            // for player input
+            int selectedCard = input.nextInt();
             player.playWithInput(selectedCard - 1, board);
+
+            //for making the player play automatically like dealer
+            //player.play(board);
+
             System.out.println();
 
             System.out.println("<-<-<-<-<-<->BOARD<->->->->->->");
@@ -83,7 +88,7 @@ public class Main {
             }*/
 
             dealer.play(board); // calling the method and making computer play
-            
+
             if (dealer.cardNum == 0) {  // if no cards then deal
                 if (deck.topDeckIndex != -1) {
                     deck.deal(player, dealer);
@@ -109,6 +114,10 @@ public class Main {
             player.points += 3;
         } else if ((player.gatheredCardsLength + 2 * player.pistiCounter) < (dealer.gatheredCardsLength + 2 * dealer.pistiCounter)) {
             dealer.points += 3;
+        }
+
+        if( dealer.points < player.points ){
+            System.out.println(" YOU ARE THE WINNER!!! :) You played well, congrats.");
         }
 
 
@@ -138,15 +147,16 @@ public class Main {
                 for (int j = fileLineIndex; j >= i; j--) {
                     if (j + 1 != 10) {
                         int x = Integer.parseInt(fileContent[j].split(",")[0]) + 1;
-                        String temp = x + "," + fileContent[j].split(",")[1] + "," + fileContent[j].split(",")[2] + "\n";
+                        String temp = x + "," + fileContent[j].split(",")[1] + "," + fileContent[j].split(",")[2];
                         fileContent[j + 1] = temp;
                     }
                 }
-                System.out.println("HIGH SCORE!!! Please enter your username:");
+                System.out.println("HIGH SCORE!!!  You have " + player.points + " points!");
+                System.out.println("Please enter your username:");
                 String userName = input.nextLine();
                 userName = input.nextLine();
                 //insert new high score
-                fileContent[i] = (i + 1) + "," + userName + "," + player.points + "\n";
+                fileContent[i] = (i + 1) + "," + userName + "," + player.points;
                 if (fileLineIndex != 9) {
                     fileLineIndex++;
                 }
@@ -157,8 +167,9 @@ public class Main {
         FileWriter fw = null;
         try {
             fw = new FileWriter("high-scores.txt");
-            if (fileLineIndex == -1) { //if the file is empty
-                System.out.println("HIGH SCORE!!! Please enter your username:");
+            if (fileLineIndex == -1) { //if the file is emptySystem.out.println("HIGH SCORE!!!  You have" + player.points + "points");
+                System.out.println("HIGH SCORE!!!  You have " + player.points + " points!");
+                System.out.println("Please enter your username:");
                 String userName = input.nextLine();
                 userName = input.nextLine();
                 fw.write("1," + userName + "," + player.points + "\n");
@@ -166,7 +177,7 @@ public class Main {
             } else {
                 // a for loop writing the updated contents to the file
                 for (int i = 0; i <= fileLineIndex; i++) {
-                    fw.write(fileContent[i]);
+                    fw.write(fileContent[i] + "\n");
                 }
                 fw.close();
             }
