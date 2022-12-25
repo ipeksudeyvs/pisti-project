@@ -118,6 +118,10 @@ public class Main {
 
         if( dealer.points < player.points ){
             System.out.println(" YOU ARE THE WINNER!!! :) You played well, congrats.");
+        } else if( dealer.points == player.points ){
+            System.out.println(" WOW call it a draw. You have the same points with computer...");
+        }else{
+            System.out.println(" :( Uh oh computer won... Try again later...");
         }
 
 
