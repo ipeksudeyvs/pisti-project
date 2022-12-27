@@ -78,11 +78,11 @@ public class Main {
             }
             System.out.println();
 
-            /*try {  // i learnt this from internet it feels like computer thinks
+            try {  // i learnt this from internet it feels like computer thinks
                 sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            }*/
+            }
 
             dealer.play(board); // calling the method and making computer play
 

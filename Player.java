@@ -62,6 +62,7 @@ public class Player {
                 }
                 gatheredCards[gatheredCardsLength] = this.hand[i];
                 gatheredCardsLength++;
+
                 if (i == cardNum - 1) {        // throwing away the card i played from hand[]
                     this.hand[i] = null;
                     cardNum--;
