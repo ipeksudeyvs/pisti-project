@@ -153,7 +153,7 @@ public class Main {
                     }
                 }
                 System.out.println("HIGH SCORE!!!  You have " + player.points + " points!");
-                System.out.println("Please enter your username:");
+                System.out.println("Please enter your name:");
                 String userName = input.nextLine();
                 userName = input.nextLine();
                 //insert new high score

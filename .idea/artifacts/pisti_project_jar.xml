@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pisti-project:jar">
+    <output-path>$PROJECT_DIR$/../../../pisti_project_jar</output-path>
+    <root id="archive" name="pisti-project.jar">
+      <element id="module-output" name="pisti-project" />
+    </root>
+  </artifact>
+</component>
